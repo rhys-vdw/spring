@@ -39,7 +39,6 @@ jobs:
         run: |
           version=$(git log -n 1 --format=format:%H $LUA_PATHS)
           echo "version=$version" >> $env:GITHUB_OUTPUT
-          echo $version
 
       - name: Check out library repo
         uses: actions/checkout@v4
@@ -54,7 +53,6 @@ jobs:
         run: |
           version=$(cat .recoil-version || true)
           echo "version=$version" >> $env:GITHUB_OUTPUT
-          echo $version
 
       # NOTE: This step is duplicated in `publish-site.yml`
       - name: Generate Lua library
@@ -68,6 +66,14 @@ jobs:
             --dest rts/Lua/library/generated \
             --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
 
+      - name: Debug
+        env:
+          LUA_VERSION: ${{ steps.lua-version.outputs.version }}
+          LIB_VERSION: ${{ steps.library-version.outputs.version }}
+        run: |
+          echo $LUA_VERSION
+          echo $LIB_VERSION
+ 
       - name: Copy changes into library repo
         if: steps.lua-version.outputs.version != steps.library-version.outputs.version
         env:
