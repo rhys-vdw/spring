@@ -22,31 +22,67 @@ jobs:
           sparse-checkout: rts/Lua
           path: recoil
 
-      # NOTE: This step is duplicated in `publish-site.yml`
-      - name: Generate Lua library
-        working-directory: recoil
+      # Add file patterns for any files that contain Lua docs to be parsed by
+      # lua-doc-extractor. Patterns should be space separated.
+      - name: Define paths
+        id: paths
         run: |
-          npm install -g lua-doc-extractor@3
-          lua-doc-extractor rts/Lua/*.cpp \
-            --dest rts/Lua/library/generated \
-            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+          paths='rts/Lua/*.cpp'
+          echo "lua_paths=$paths" >> $env:GITHUB_OUTPUT
+
+      # Get sha of latest commit that updated files in the FmodProject folder
+      - name: Get version of Lua definitions
+        id: lua-version
+        working-directory: recoil
+        env:
+          LUA_PATHS: ${{ steps.paths.outputs.lua_paths }}
+        run: |
+          commit=$(git log -n 1 --format=format:%H $LUA_PATHS)
+          echo "version=$commit" >> $env:GITHUB_OUTPUT
 
       - name: Check out library repo
         uses: actions/checkout@v4
         with:
-          repository: beyond-all-reason/recoil-lua-library
+          repository: ${{ secrets.RECOIL_LUA_LIBRARY_RESPOSITORY }}
           ssh-key: ${{ secrets.RECOIL_LUA_LIBRARY_SSH_KEY }}
           path: library
 
-      - name: Copy changes into library repo
+      - name: Check library version
+        id: library-version
+        working-directory: library
         run: |
+          version=$(cat .recoil-version || true)
+          echo "version=$version" >> $env:GITHUB_OUTPUT
+
+      # NOTE: This step is duplicated in `publish-site.yml`
+      - name: Generate Lua library
+        working-directory: recoil
+        if: steps.lua-version.outputs.version != steps.library-version.outputs.version
+        env:
+          LUA_PATHS: ${{ steps.paths.outputs.lua_paths }}
+        run: |
+          npm install -g lua-doc-extractor@3
+          lua-doc-extractor $LUA_PATHS \
+            --dest rts/Lua/library/generated \
+            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+
+      - name: Copy changes into library repo
+        if: steps.lua-version.outputs.version != steps.library-version.outputs.version
+        env:
+          VERSION: ${{ steps.lua-version.outputs.version }}
+        run: |
+          # Copy library
           rm -rf library/library
           cp -r recoil/rts/Lua/library library
+
+          # Update version
+          echo $VERSION > library/.recoil-version
 
       # Always try to update library repo (even if generation did not make changes).
       # Hand-written files may have changed without generated output changing,
       # and library may simply be out of date for whatever reason.
       - name: Commit and push library repo
+        if: steps.lua-version.outputs.version != steps.library-version.outputs.version
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           repository: ./library
