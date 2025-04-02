@@ -28,8 +28,8 @@ jobs:
             --error
 
       - name: Set up Homebrew
-        id: set-up-homebrew
-        uses: Homebrew/actions/setup-homebrew@master
+        run: |
+          eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
       - name: Install Lua Language Server
         run: |
