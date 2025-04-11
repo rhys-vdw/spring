@@ -11,9 +11,13 @@
 
 /***
  * Command constants.
+ * 
+ * These modify the commands that are send to blah blah blah.
+ * 
+ * @see Spring.GiveOrderToUnit
+ * @see Spring.GiveOrderToUnitArray
  * @enum CMD
  */
-
 bool LuaConstCMD::PushEntries(lua_State* L)
 {
 	/*** @field CMD.OPT_ALT 128 */
@@ -60,11 +64,62 @@ bool LuaConstCMD::PushEntries(lua_State* L)
 
 #define PUSH_CMD(cmd) LuaInsertDualMapPair(L, #cmd, CMD_ ## cmd);
 
-	/*** @field CMD.STOP 0 */
+	/***
+	 * @field CMD.STOP 0
+	 * Stop the current action.
+	 * For factories, this will cancel the queue.
+	 * For units, this will cancel the current command and queue.
+	 * 
+	 * Accepts no parameters.
+	 */
 	PUSH_CMD(STOP);
 	/*** @field CMD.INSERT 1 */
 	PUSH_CMD(INSERT);
-	/*** @field CMD.REMOVE 2 */
+
+	/***
+	 * @field CMD.REMOVE 2
+	 * 
+	 * Remove commands from a unit queue.
+	 * 
+	 * The behaviour can be modifier with the following options:
+	 * 
+	 * ## Parameters
+	 * 
+	 * ### `alt` Remove by id or tag switch.
+	 * - params will be an array of ids or tags to look for, unless META is used too
+	 *
+	 * ### `meta` Remove by range.
+	 * - `params` {start, end}. both are optional and if not set default to queue limits.
+	 * - with `alt`, start and end are indexes, without ALT, they're tags.
+	 * 
+	 * ### `ctrl` alternative queue selection.
+	 * - for factories alternative queue is the factory command queue, default queue is the newUnitCommands queue.
+	 * - for other units no effect.
+	 * 
+	 * callins: After successful execution, it will call `UnitCmdDone`.
+	 * 
+	 * ## Examples:
+	 * 
+	 * Delete everything:
+	 * ```lua
+	 * Spring.GiveOrderToUnit(unitID, CMD.REMOVE, nil, {'meta', 'ctrl'})
+	 * ```
+	 * 
+	 * Delete all but the 1st element:
+	 * ```lua
+	 * Spring.GiveOrderToUnit(unitID, CMD.REMOVE, 2, {'meta', 'ctrl', 'alt'})
+	 * ```
+	 * 
+	 * Delete from 1st to 2th:
+	 * ```lua
+	 * Spring.GiveOrderToUnit(unitID, CMD.REMOVE, {1, 20}, {'meta', 'ctrl', 'alt'})
+	 * ```
+	 * Delete from position of `startTag`, to `endTag`.
+	 * ```lua
+	 * Spring.GiveOrderToUnit(unitID, CMD.REMOVE, {startTag, endTag}, {'meta', 'ctrl'})
+	 * ```
+	 * @see Spring.GiveOrderToUnit
+	 */
 	PUSH_CMD(REMOVE);
 	/*** @field CMD.WAIT 5 */
 	PUSH_CMD(WAIT);

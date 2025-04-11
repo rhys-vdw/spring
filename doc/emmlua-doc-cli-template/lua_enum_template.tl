@@ -19,6 +19,8 @@ permalink: lua-api/types/{{ type_name }}
 
 {% for field in fields -%}
 
+---
+
 ### {{ field.name }}
 
 ```lua
