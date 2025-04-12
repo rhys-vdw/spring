@@ -29,12 +29,17 @@ jobs:
 
       - name: Install dra
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh | bash -s
+          curl --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/devmatteini/dra/refs/heads/main/install.sh | bash -s -- --to ./dra
 
       - name: Install Lua Language Server
         run: |
-          ./dra download --install LuaLS/lua-language-server
+          ./dra download \
+            --select "lua-language-server-{tag}-linux-x64.tar.gz" \
+            LuaLS/lua-language-server \
+            --output lls.tar.gz
+          mkdir lls
+          tar -xvzf lls.tar.gz -C lls
 
       - name: Check 
         run: |
-          lua-language-server --check rts/Lua/library
+          ./lls/bin/lua-language-server --check rts/Lua/library
