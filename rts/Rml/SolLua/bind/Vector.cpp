@@ -37,6 +37,19 @@ namespace Rml::SolLua
 
 	void bind_vector(sol::table& namespace_table)
 	{
+		/***
+		 * Two-dimensional integral vector.
+		 * @class Vector2i
+		 * @field magnitude number
+		 * @field x integer
+		 * @field y integer
+		 * @field new fun():Vector2i
+		 * @operator add:Vector2i
+		 * @operator div:Vector2i
+		 * @operator mul:Vector2i
+		 * @operator sub:Vector2i
+		 * @operator unm:Vector2i
+		 */
 		namespace_table.new_usertype<Rml::Vector2i>("Vector2i", sol::constructors<Rml::Vector2i(), Rml::Vector2i(int, int)>(),
 			// O
 			sol::meta_function::addition, &Rml::Vector2i::operator+,
@@ -59,6 +72,20 @@ namespace Rml::SolLua
 			"magnitude", &Rml::Vector2i::Magnitude
 		);
 
+		/***
+		 * Two-dimensional float vector
+		 * @see float2
+		 * @class Vector2f
+		 * @field magnitude number
+		 * @field x number
+		 * @field y number
+		 * @field new fun():Vector2f
+		 * @operator add:Vector2f
+		 * @operator div:Vector2f
+		 * @operator mul:Vector2f
+		 * @operator sub:Vector2f
+		 * @operator unm:Vector2i
+		 */
 		namespace_table.new_usertype<Rml::Vector2f>("Vector2f", sol::constructors<Rml::Vector2f(), Rml::Vector2f(float, float)>(),
 			// O
 			sol::meta_function::addition, &Rml::Vector2f::operator+,
