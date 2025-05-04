@@ -29,10 +29,7 @@ jobs:
         working-directory: recoil
         run: |
           npm install -g lua-doc-extractor@3
-          lua-doc-extractor rts/Lua/*.cpp \
-            --dest rts/Lua/library/generated \
-            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
-          lua-doc-extractor rts/Rml/SolLua/*.cpp \
+          lua-doc-extractor rts/Lua/*.cpp rts/Rml/SolLua/*.cpp \
             --dest rts/Lua/library/generated \
             --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
 
