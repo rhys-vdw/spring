@@ -68,6 +68,7 @@ namespace Rml::SolLua
 		 /***
 		  * Set a table property dirty to trigger a rerender
 		  * @function RmlUi.SolLuaDataModel:__SetDirty
+		  * @param property string
 		  */
 		namespace_table.new_usertype<SolLuaDataModel>("SolLuaDataModel", sol::no_constructor,
 			sol::meta_function::index, &functions::dataModelGet,

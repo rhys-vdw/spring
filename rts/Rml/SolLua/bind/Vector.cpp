@@ -81,7 +81,7 @@ namespace Rml::SolLua
 		/***
 		 * Two-dimensional float vector
 		 * @see float2
-		 * @class RmlUi.Vector2fRmlUi.
+		 * @class RmlUi.Vector2f.
 		 * @field magnitude number
 		 * @field x number
 		 * @field y number

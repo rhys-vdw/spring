@@ -138,8 +138,9 @@
 			  * @function RmlUi.LoadFontFace
 			  * 
 			  * @param file_path string
-			  * @param fallback boolean 
-			  * @param weight number
+			  * @param fallback boolean?
+			  * @param weight RmlUi.font_weight?
+			  * @return boolean success
 			  */
 			 "LoadFontFace", sol::overload(
 				 &functions::loadFontFace1,
@@ -158,7 +159,7 @@
 			 "GetContext", sol::resolve<Rml::Context* (const Rml::String&)>(&RmlGui::GetContext),
  
 			 /***
-			  * @alias RmlEventID
+			  * @alias RmlUi.EventID
 			  * | 0 # Invalid
 			  * | 1 # Mousedown
 			  * | 2 # Mousescroll
@@ -205,7 +206,7 @@
 			  * @param interruptible boolean?
 			  * @param bubbles boolean?
 			  * @param default_phase RmlUi.default_action_phase?
-			  * @param RmlEventID
+			  * @return RmlUi.EventID
 			  */
 			 "RegisterEventType", sol::overload(&functions::registerEventType4, &functions::registerEventType3),
 			 /***
@@ -250,7 +251,7 @@
 			 /***
 			  * Global functions for Recoil's RmlUi implementation. 
 			  * @class RmlUi
-			  * @field contexts RmlCOntext[]
+			  * @field contexts RmlUi.Context[]
 			  * @field version string RmlUi version
 			  */
  

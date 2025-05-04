@@ -64,7 +64,7 @@ namespace Rml::SolLua
 	{
 		//--
 		/***
-		 * @alias RmlEventPhase
+		 * @alias RmlUi.RmlEventPhase
 		 * | "None"
 		 * | "Capture"
 		 * | "Target"
@@ -106,10 +106,10 @@ namespace Rml::SolLua
 
 		/***
 		 * @class RmlUi.Event
-		 * @field current_element RmlElement
+		 * @field current_element Rml.Element
 		 * @field type string
 		 * @field parameters RmlUi.EventParametersProxy
-		 * @field event_phase RmlEventPhase
+		 * @field event_phase RmlUi.RmlEventPhase
 		 * @field interruptible boolean
 		 * @field propogating boolean
 		 * @field immediate_propogating boolean
