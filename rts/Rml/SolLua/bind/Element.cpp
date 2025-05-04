@@ -219,36 +219,43 @@ namespace Rml::SolLua
 			sol::meta_function::pairs, &style::StyleProxy::Pairs
 		);
 
-		/***
-		 * The Element class has no constructor; it must be instantiated through a Document object instead.
+		/***  
+		 * Represents an element in the RmlUi document tree. This class cannot be constructed directly; use a Document object to instantiate elements.
 		 * @class RmlUi.Element
-		 * @field attributes RmlUi.ElementAttributesProxy
-		 * @field child_nodes RmlUi.ElementChildNodesProxy
-		 * @field class_name string
-		 * @field client_height number
-		 * @field client_left number
-		 * @field client_top number
-		 * @field client_width number
-		 * @field first_child RmlUi.Element?
-		 * @field id string
-		 * @field inner_rml string
-		 * @field last_child RmlUi.Element?
-		 * @field next_sibling RmlUi.Element?
-		 * @field offset_height number
-		 * @field offset_left number
-		 * @field offset_parent RmlUi.Element
-		 * @field offset_top number
-		 * @field offset_width number
-		 * @field owner_document RmlDocument
-		 * @field parent_node RmlUi.Element?
-		 * @field previous_sibling RmlUi.Element?
-		 * @field scroll_height number
-		 * @field scroll_left number
-		 * @field scroll_top number
-		 * @field scroll_width number
-		 * @field style RmlUi.ElementStyleProxy
-		 * @field tag_name string
-		 */
+		 * @field attributes RmlUi.ElementAttributesProxy Read-only. Proxy for accessing element attributes.
+		 * @field child_nodes RmlUi.ElementChildNodesProxy Read-only. Proxy for accessing child nodes of the element.
+		 * @field class_name string Gets or sets the class names assigned to the element.
+		 * @field client_height integer Read-only. The inner height of the element in pixels, including padding but not the horizontal scrollbar height, border, or margin.
+		 * @field client_left integer Read-only. The width of the left border of the element in pixels.
+		 * @field client_top integer Read-only. The width of the top border of the element in pixels.
+		 * @field client_width integer Read-only. The inner width of the element in pixels, including padding but not the vertical scrollbar width, border, or margin.
+		 * @field first_child RmlUi.Element? Read-only. The first child element, or nil if there are no children.
+		 * @field id string Gets or sets the unique identifier of the element.
+		 * @field inner_rml string Gets or sets the inner RML (markup) content of the element.
+		 * @field last_child RmlUi.Element? Read-only. The last child element, or nil if there are no children.
+		 * @field next_sibling RmlUi.Element? Read-only. The next sibling element, or nil if there is none.
+		 * @field offset_height integer Read-only. The height of the element including vertical padding and borders, in pixels.
+		 * @field offset_left integer Read-only. The distance from the inner left edge of the offset parent, in pixels.
+		 * @field offset_parent RmlUi.Element Read-only. The closest positioned ancestor element.
+		 * @field offset_top integer Read-only. The distance from the inner top edge of the offset parent, in pixels.
+		 * @field offset_width integer Read-only. The width of the element including horizontal padding and borders, in pixels.
+		 * @field owner_document RmlDocument Read-only. The document that owns this element.
+		 * @field parent_node RmlUi.Element? Read-only. The parent node of this element, or nil if there is none.
+		 * @field previous_sibling RmlUi.Element? Read-only. The previous sibling element, or nil if there is none.
+		 * @field scroll_height integer Read-only. The total height of the element's content, including content not visible on the screen due to overflow.
+		 * @field scroll_left integer Gets or sets the number of pixels that the content of the element is scrolled from the left.
+		 * @field scroll_top integer Gets or sets the number of pixels that the content of the element is scrolled from the top.
+		 * @field scroll_width integer Read-only. The total width of the element's content, including content not visible on the screen due to overflow.
+		 * @field style RmlUi.ElementStyleProxy Read-only. Proxy for accessing and modifying the element's style properties.
+		 * @field tag_name string Read-only. The tag name of the element.
+		 * @field address string Read-only. The address of the element in the document tree.
+		 * @field absolute_left integer Read-only. The absolute left position of the element relative to the document.
+		 * @field absolute_top integer Read-only. The absolute top position of the element relative to the document.
+		 * @field baseline integer Read-only. The baseline position of the element.
+		 * @field line_height integer Read-only. The computed line height of the element.
+		 * @field visible boolean Read-only. True if the element is visible, false otherwise.
+		 * @field z_index integer Read-only. The computed z-index of the element.
+		*/
 
 		/***
 		 * Adds an event listener to the element.
