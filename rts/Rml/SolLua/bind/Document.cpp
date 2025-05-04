@@ -99,6 +99,9 @@ namespace Rml::SolLua
 
 	void bind_document(sol::table& namespace_table)
 	{
+		/***
+		 * @alias RmlModalFlag "None" | "Modal" | "Keep"
+		 */
 		namespace_table.new_enum<Rml::ModalFlag>("RmlModalFlag",
 			{
 				{ "None", Rml::ModalFlag::None },
@@ -107,6 +110,9 @@ namespace Rml::SolLua
 			}
 		);
 
+		/***
+		 * @alias RmlFocusFlag "None" | "Document" | "Keep" | "Auto"
+		 */
 		namespace_table.new_enum<Rml::FocusFlag>("RmlFocusFlag",
 			{
 				{ "None", Rml::FocusFlag::None },
@@ -116,6 +122,22 @@ namespace Rml::SolLua
 			}
 		);
 
+		/***
+		 * Document derives from Element. Document has no constructor; it must be instantiated through a Context object instead, either by loading an external RML file or creating an empty document. It has the following functions and properties:
+		 * @class RmlDocument:RmlElement
+		 * @field context RmlContext
+		 * @field title string
+		 * @field url string
+		 * @field modal boolean is modal?
+		 * @field widget table
+		 * @field Close fun(self: RmlDocument) Hides and closes the document, destroying its contents.
+		 * @field CreateElement fun(self: RmlDocument, tag_name: string):RmlElementPtr Instances an element with a tag of tag_name.
+		 * @field CreateTextNode fun(self: RmlDocument, text: string):RmlElementPtr Instances a text element containing the string text.
+		 * @field Hide fun(self: RmlDocument) Hides the document.
+		 * @field PullToFront fun(self: RmlDocument) Pulls the document in front of other documents within its context with a similar z-index.
+		 * @field PushToBack fun(self: RmlDocument) Pushes the document behind other documents within its context with a similar z-index.
+		 * @field Show fun(self: RmlDocument, modal: RmlDocumentModal?, focus: RmlDocumentFocus?) Shows the document. flags is either NONE, FOCUS or MODAL. flags defaults to FOCUS.
+		 */
 		namespace_table.new_usertype<SolLuaDocument>("Document", sol::no_constructor,
 			// M
 			"PullToFront", &SolLuaDocument::PullToFront,
