@@ -195,6 +195,13 @@ namespace Rml::SolLua
 
 	void bind_element(sol::table& namespace_table)
 	{
+		/***
+		 * Event listener interface
+		 * @class RmlEventListener
+		 * @field ProcessEvent fun(event: RmlEvent)
+		 * @field OnAttach fun(element: RmlUi.Element) 
+		 * @field OnDetach fun(element: RmlUi.Element)
+		 */ 
 		namespace_table.new_usertype<Rml::EventListener>("EventListener", sol::no_constructor,
 			// M
 			"OnAttach", &Rml::EventListener::OnAttach,
@@ -203,13 +210,174 @@ namespace Rml::SolLua
 		);
 
 		///////////////////////////
-
+		/***
+		 * @alias RmlUi.ElementStyleProxy { [string]: string }
+		 */
 		namespace_table.new_usertype<style::StyleProxy>("StyleProxy", sol::no_constructor,
 														sol::meta_function::index, &style::StyleProxy::Set,
 			sol::meta_function::new_index, &style::StyleProxy::Set,
 			sol::meta_function::pairs, &style::StyleProxy::Pairs
 		);
 
+		/***
+		 * The Element class has no constructor; it must be instantiated through a Document object instead.
+		 * @class RmlUi.Element
+		 * @field attributes RmlUi.ElementAttributesProxy
+		 * @field child_nodes RmlUi.ElementChildNodesProxy
+		 * @field class_name string
+		 * @field client_height number
+		 * @field client_left number
+		 * @field client_top number
+		 * @field client_width number
+		 * @field first_child RmlUi.Element?
+		 * @field id string
+		 * @field inner_rml string
+		 * @field last_child RmlUi.Element?
+		 * @field next_sibling RmlUi.Element?
+		 * @field offset_height number
+		 * @field offset_left number
+		 * @field offset_parent RmlUi.Element
+		 * @field offset_top number
+		 * @field offset_width number
+		 * @field owner_document RmlDocument
+		 * @field parent_node RmlUi.Element?
+		 * @field previous_sibling RmlUi.Element?
+		 * @field scroll_height number
+		 * @field scroll_left number
+		 * @field scroll_top number
+		 * @field scroll_width number
+		 * @field style RmlUi.ElementStyleProxy
+		 * @field tag_name string
+		 */
+
+		/***
+		 * Adds an event listener to the element.
+		 * @function RmlUi.Element:AddEventListener
+		 * @param event string
+		 * @param listener function|string
+		 * @param in_capture_phase boolean
+		 */
+
+		/***
+		 * Appends element as a child to this element.
+		 * @function RmlUi.Element:AppendChild
+		 * @param element RmlUi.ElementPtr
+		 * @return RmlUi.ElementPtr
+		 */
+
+		/***
+		 * Removes input focus from this element.
+		 * @function RmlUi.Element:Blur
+		 */
+
+		/***
+		 * Fakes a click on this element.
+		 * @function RmlUi.Element:Click
+		 */
+
+		/***
+		 * Dispatches an event to this element.
+		 * @function RmlUi.Element:DispatchEvent
+		 * @param event string
+		 * @param parameters table
+		 * @param interruptible string
+		 * @return boolean
+		 */
+
+		/***
+		 * Gives input focus to this element.
+		 * @function RmlUi.Element:Focus
+		 */
+
+		/***
+		 * Returns the value of the attribute named name. If no such attribute exists, the empty string will be returned.
+		 * @function RmlUi.Element:GetAttribute
+		 * @param name string
+		 * @return any
+		 */
+
+		/***
+		 * Returns the descendant element with an id of id.
+		 * @function RmlUi.Element:GetElementById
+		 * @param id string
+		 * @return RmlUi.Element
+		 */
+
+		/***
+		 * Returns a list of all descendant elements with the tag of tag_name.
+		 * @function RmlUi.Element:GetElementsByTagName
+		 * @param tag_name string
+		 * @return RmlUi.ElementPtr[]
+		 */
+
+		/***
+		 * Returns True if the element has a value for the attribute named name, False if not.
+		 * @function RmlUi.Element:HasAttribute
+		 * @param name string
+		 * @return boolean
+		 */
+
+		/***
+		 * Returns True if the element has at least one child node, false if not.
+		 * @function RmlUi.Element:HasChildNodes
+		 * @return boolean
+		 */
+
+		/***
+		 * Inserts the element element as a child of this element, directly before adjacent_element in the list of children.
+		 * @function RmlUi.Element:InsertBefore
+		 * @param element RmlUi.ElementPtr
+		 * @param adjacent_element RmlUi.Element
+		 * @return RmlUi.ElementPtr
+		 */
+
+		/***
+		 * Returns true if the class name is set on the element, false if not.
+		 * @function RmlUi.Element:IsClassSet
+		 * @param name string
+		 * @return boolean
+		 */
+
+		/***
+		 * Removes the attribute named name from the element.
+		 * @function RmlUi.Element:RemoveAttribute
+		 * @param name string
+		 */
+
+		/***
+		 * Removes the child element element from this element.
+		 * @function RmlUi.Element:RemoveChild
+		 * @param element RmlUi.Element
+		 * @return boolean
+		 */
+
+		/***
+		 * Replaces the child element replaced_element with inserted_element in this element's list of children. If replaced_element is not a child of this element, inserted_element will be appended onto the list instead.
+		 * @function RmlUi.Element:ReplaceChild
+		 * @param inserted_element RmlUi.ElementPtr
+		 * @param replaced_element RmlUi.Element
+		 * @return boolean
+		 */
+
+		/***
+		 * Scrolls this element into view if its ancestors have hidden overflow.
+		 * @function RmlUi.Element:ScrollIntoView
+		 * @param align_with_top boolean
+		 */
+
+		/***
+		 * Sets the value of the attribute named name to value.
+		 * @function RmlUi.Element:SetAttribute
+		 * @param name string
+		 * @param value string
+		 */
+
+		/***
+		 * Sets (if value is true) or clears (if value is false) the class name on the element.
+		 * @function RmlUi.Element:SetClass
+		 * @param name string
+		 * @param value boolean
+		 */
 		namespace_table.new_usertype<Rml::Element>("Element", sol::no_constructor,
 			// M
 			"AddEventListener", sol::overload(

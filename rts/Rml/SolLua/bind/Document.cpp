@@ -124,19 +124,53 @@ namespace Rml::SolLua
 
 		/***
 		 * Document derives from Element. Document has no constructor; it must be instantiated through a Context object instead, either by loading an external RML file or creating an empty document. It has the following functions and properties:
-		 * @class RmlDocument:RmlElement
-		 * @field context RmlContext
+		 * @class RmlUi.Document:RmlUi.Element
+		 * @field context RmlUi.Context
 		 * @field title string
 		 * @field url string
 		 * @field modal boolean is modal?
 		 * @field widget table
-		 * @field Close fun(self: RmlDocument) Hides and closes the document, destroying its contents.
-		 * @field CreateElement fun(self: RmlDocument, tag_name: string):RmlElementPtr Instances an element with a tag of tag_name.
-		 * @field CreateTextNode fun(self: RmlDocument, text: string):RmlElementPtr Instances a text element containing the string text.
-		 * @field Hide fun(self: RmlDocument) Hides the document.
-		 * @field PullToFront fun(self: RmlDocument) Pulls the document in front of other documents within its context with a similar z-index.
-		 * @field PushToBack fun(self: RmlDocument) Pushes the document behind other documents within its context with a similar z-index.
-		 * @field Show fun(self: RmlDocument, modal: RmlDocumentModal?, focus: RmlDocumentFocus?) Shows the document. flags is either NONE, FOCUS or MODAL. flags defaults to FOCUS.
+		 */
+
+		/***
+		 * Hides and closes the document, destroying its contents.
+		 * @function RmlUi.Document:Close
+		 */
+
+		/***
+		 * Instances an element with a tag of tag_name.
+		 * @function RmlUi.Document:CreateElement
+		 * @param tag_name string
+		 * @return RmlUi.ElementPtr
+		 */
+
+		/***
+		 * Instances a text element containing the string text.
+		 * @function RmlUi.Document:CreateTextNode
+		 * @param text string
+		 * @return RmlUi.ElementPtr
+		 */
+
+		/***
+		 * Hides the document.
+		 * @function RmlUi.Document:Hide
+		 */
+
+		/***
+		 * Pulls the document in front of other documents within its context with a similar z-index.
+		 * @function RmlUi.Document:PullToFront
+		 */
+
+		/***
+		 * Pushes the document behind other documents within its context with a similar z-index.
+		 * @function RmlUi.Document:PushToBack
+		 */
+		
+		/***
+		 * Shows the document. flags is either NONE, FOCUS or MODAL. flags defaults to FOCUS.
+		 * @function RmlUi.Document:Show
+		 * @param modal RmlModalFlag?
+		 * @param focus RmlFocusFlag?
 		 */
 		namespace_table.new_usertype<SolLuaDocument>("Document", sol::no_constructor,
 			// M
