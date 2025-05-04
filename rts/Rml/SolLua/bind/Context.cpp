@@ -276,6 +276,76 @@ auto getElementAtPoint2(Rml::Context& self, Rml::Vector2f point, Rml::Element& i
 void bind_context(sol::table& namespace_table, SolLuaPlugin* slp)
 {
 	// clang-format off
+
+	/***
+	 * Holds documents and a data model.
+	 * The Context class has no constructor; it must be instantiated through the CreateContext() function. It has the following functions and properties:
+	 * @class RmlUi.Context
+	 * @field dimensions Vector2i
+	 * @field documents RmlContextDocumentsProxy
+	 * @field focus_element RmlUi.Element
+	 * @field hover_element RmlUi.Element
+	 * @field name string
+	 * @field root_element RmlElement
+	 */
+
+	/***
+	 * Adds the inline Lua script, script, as an event listener to the context. element_context is an optional Element; if it is not None, then the script will be executed as if it was bound to that element.
+	 * @function RmlUi.Context:AddEventListener
+	 * @param event string
+	 * @param script RmlElement
+	 * @param element_context boolean
+	 * @param in_capture_phase boolean
+	 */
+
+	/***
+	 * Creates a new document with the tag name of tag.
+	 * @function RmlUi.Context:CreateDocument
+	 * @param tag string
+	 * @return RmlDocument
+	 */
+
+	/***
+	 * Attempts to load a document from the RML file found at document_path. If successful, the document will be returned with a reference count of one.
+	 * @function RmlUi.Context:LoadDocument
+	 * @param document_path string
+	 * @return RmlDocument
+	 */
+
+	/***
+	 * Renders the context.
+	 * @function RmlUi.Context:Render
+	 * @return boolean
+	 */
+
+	/***
+	 * Closes all documents currently loaded with the context.
+	 * @function RmlUi.Context:UnloadAllDocuments
+	 */
+
+	/***
+	 * Unloads a specific document within the context.
+	 * @function RmlUi.Context:UnloadDocument
+	 * @param document RmlDocument
+	 */
+
+	/***
+	 * Updates the context.
+	 * @function RmlUi.Context:Update
+	 * @return boolean
+	 */
+
+	/***
+	 * Create a new data model from a base table `model` and register to the context. The model table is copied. 
+	 * Note that `widget` does not actually have to be a widget; it can be any table. This table can be accessed in widgets like `<button class="mode-button" onclick="widget:SetCamMode()">Set Dolly Mode</button>`. Also note that your data model is inaccessible in `onx` properties.
+	 * @function RmlUi.Context:OpenDataModel
+	 * @generic T
+	 * @param name string
+	 * @param model 'T'
+	 * @param widget table
+	 * @return RmlUi.SolLuaDataModel<T>
+	 */
+
 	namespace_table.new_usertype<Rml::Context>(
 		"Context", sol::no_constructor,
 		// M
