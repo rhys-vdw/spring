@@ -52,6 +52,14 @@ namespace Rml::SolLua
 
 	void bind_color(sol::table& bindings)
 	{
+		/***
+		 * @class RmlUi.Colourb
+		 * @field red integer
+		 * @field green integer
+		 * @field blue integer
+		 * @field alpha integer
+		 * @field rgba [integer, integer, integer, integer]
+		 */
 		bindings.new_usertype<Rml::Colourb>("Colourb", sol::constructors<Rml::Colourb(), Rml::Colourb(Rml::byte, Rml::byte, Rml::byte), Rml::Colourb(Rml::byte, Rml::byte, Rml::byte, Rml::byte)>(),
 			// O
 			sol::meta_function::addition, &Rml::Colourb::operator+,
@@ -67,7 +75,14 @@ namespace Rml::SolLua
 			"alpha", sol::property([](Rml::Colourb& self) { return self.alpha; }, [](Rml::Colourb& self, Rml::byte value) { self.alpha = value; }),
 			"rgba", sol::property(static_cast<ColourbTuple(*)(Rml::Colourb&)>(&getRGBA), static_cast<void(*)(Rml::Colourb&, ColourbTuple)>(&setRGBA))
 		);
-
+		/***
+		 * @class RmlUi.Colourf
+		 * @field red number
+		 * @field green number
+		 * @field blue number
+		 * @field alpha number
+		 * @field rgba [number, number, number, number]
+		 */
 		bindings.new_usertype<Rml::Colourf>("Colourf", sol::constructors<Rml::Colourf(), Rml::Colourf(float, float, float), Rml::Colourf(float, float, float, float)>(),
 			// O
 			sol::meta_function::addition, &Rml::Colourf::operator+,
