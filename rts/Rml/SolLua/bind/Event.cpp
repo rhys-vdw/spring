@@ -63,6 +63,13 @@ namespace Rml::SolLua
 	void bind_event(sol::table& namespace_table)
 	{
 		//--
+		/***
+		 * @alias RmlEventPhase
+		 * | "None"
+		 * | "Capture"
+		 * | "Target"
+		 * | "Bubble"
+		 */
 		namespace_table.new_enum("RmlEventPhase",
 			"None", Rml::EventPhase::None,
 			"Capture", Rml::EventPhase::Capture,
@@ -70,6 +77,45 @@ namespace Rml::SolLua
 			"Bubble", Rml::EventPhase::Bubble
 		);
 
+		/***
+		 * --- @alias RmlEventParametersProxy.MouseButton
+		 * | 0 # Left
+		 * | 1 # Right
+		 * | 2 # Middle
+		 */
+
+		/***
+		 * @alias RmlEventParametersProxy.TrueFalse
+		 * | 0 # False
+		 * | 1 # True
+		 */
+
+		/***
+		 * @alias RmlEventParametersProxy {
+		 * button: RmlEventParametersProxy.MouseButton,
+		 * mouse_x: integer,
+		 * mouse_y: integer,
+		 * scroll_lock_key: RmlEventParametersProxy.TrueFalse,
+		 * meta_key: RmlEventParametersProxy.TrueFalse,
+		 * ctrl_key: RmlEventParametersProxy.TrueFalse,
+		 * shift_key: RmlEventParametersProxy.TrueFalse,
+		 * caps_lock_key: RmlEventParametersProxy.TrueFalse,
+		 * alt_key: RmlEventParametersProxy.TrueFalse,
+		 * }
+		 */
+
+		/***
+		 * @class RmlEvent
+		 * @field current_element RmlElement
+		 * @field type string
+		 * @field parameters RmlEventParametersProxy
+		 * @field event_phase RmlEventPhase
+		 * @field interruptible boolean
+		 * @field propogating boolean
+		 * @field immediate_propogating boolean
+		 * @field StopPropogation fun(self: EmlEvent)
+		 * @field StopImmediatePropogation fun(self: EmlEvent)
+		 */
 		namespace_table.new_usertype<Rml::Event>("Event", sol::no_constructor,
 			// M
 			"StopPropagation", &Rml::Event::StopPropagation,

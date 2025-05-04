@@ -622,7 +622,7 @@
 			 return t;
 		 }));
 		 /***
-		  * @alias RmlKeyModifier "CTRL" | "SHIFT" | "ALT" | "META" | "CAPSLOCK" "NUMLOCK" | "SCROLLOCK"
+		  * @alias RmlKeyModifier "CTRL" | "SHIFT" | "ALT" | "META" | "CAPSLOCK" | "NUMLOCK" | "SCROLLOCK"
 		  */
 		 namespace_table.set("key_modifier", sol::readonly_property([](sol::this_state l) {
 			 sol::state_view lua(l);
