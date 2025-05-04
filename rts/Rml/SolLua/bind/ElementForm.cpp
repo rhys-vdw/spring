@@ -136,7 +136,15 @@ namespace Rml::SolLua
 
 	void bind_element_form(sol::table& namespace_table)
 	{
+		/***
+		 * @class RmlUi.ElementForm:RmlUi.Element
+		 */
 
+		/***
+		 * @function RmlUi.ElementForm:Submit
+		 * @param name string?
+		 * @param value string?
+		 */
 		namespace_table.new_usertype<Rml::ElementForm>("ElementForm", sol::no_constructor,
 			// M
 			"Submit", sol::overload(&submit::submit, &submit::submitName, &submit::submitNameValue),
@@ -146,7 +154,13 @@ namespace Rml::SolLua
 		);
 
 		///////////////////////////
-
+		/***
+		 * @class RmlUi.ElementFormControl:RmlUi.Element
+		 * @field disabled boolean
+		 * @field name string 
+		 * @field value string 
+		 * @field submitted boolean
+		 */
 		namespace_table.new_usertype<Rml::ElementFormControl>("ElementFormControl", sol::no_constructor,
 			// G+S
 			"disabled", sol::property(&Rml::ElementFormControl::IsDisabled, &Rml::ElementFormControl::SetDisabled),
@@ -162,7 +176,15 @@ namespace Rml::SolLua
 		);
 
 		///////////////////////////
-
+		/***
+		 * @class RmlUi.ElementFormControlInput: RmlUi.Element, RmlUi.ElementFormControl
+		 * @field checked boolean 
+		 * @field maxlength integer 
+		 * @field size int 
+		 * @field max int
+		 * @field min int
+		 * @field step int
+		 */
 		namespace_table.new_usertype<Rml::ElementFormControlInput>("ElementFormControlInput", sol::no_constructor,
 			// G+S
 			"checked", sol::property(HASATTRGETTER(Rml::ElementFormControlInput, "checked"), SETATTR(Rml::ElementFormControlInput, "checked", bool)),
@@ -177,18 +199,40 @@ namespace Rml::SolLua
 		);
 
 		///////////////////////////
-
+		/***
+		 * @alias RmlUi.SelectOptionsProxy RmlUi.SelectOptionsProxyNode[]
+		 */
 		namespace_table.new_usertype<options::SelectOptionsProxy>("SelectOptionsProxy", sol::no_constructor,
 			sol::meta_function::index, &options::SelectOptionsProxy::Get,
 			sol::meta_function::pairs, &options::SelectOptionsProxy::Pairs,
 			sol::meta_function::ipairs, &options::SelectOptionsProxy::Pairs
 		);
-
+		/***
+		 * @alias RmlUi.SelectOptionsProxyNode {element: RmlUi.Element, value: string}
+		 */
 		namespace_table.new_usertype<options::SelectOptionsProxyNode>("SelectOptionsProxyNode", sol::no_constructor,
 			"element", &options::SelectOptionsProxyNode::Element,
 			"value", &options::SelectOptionsProxyNode::Value
 		);
+		/***
+		 * @class RmlUi.ElementFormControlSelect: RmlUi.Element, RmlUi.ElementFormControl
+		 * @field options RmlUi.OptionsProxy
+		 */
 
+		/***
+		 * @function RmlUi.ElementFormControlSelect:Add
+		 * @param element RmlUi.Element
+		 * @param before integer?
+		 */
+		
+		/***
+		 * @function RmlUi.ElementFormControlSelect:Remove
+		 * @param index integer
+		 */
+
+		/***
+		 * @function RmlUi.ElementFormControlSelect:RemoveAll
+		 */
 		namespace_table.new_usertype<Rml::ElementFormControlSelect>("ElementFormControlSelect", sol::no_constructor,
 			// M
 			"Add", [](Rml::ElementFormControlSelect& self, Rml::ElementPtr& element, sol::variadic_args va) {
@@ -210,7 +254,13 @@ namespace Rml::SolLua
 		);
 
 		///////////////////////////
-
+		/***
+		 * @class RmlUi.ElementFormControlTextArea: RmlUi.Element, RmlUi.ElementFormControl
+		 * @field cols integer
+		 * @field maxlength integer
+		 * @field rows integer
+		 * @field wordwrap boolean
+		 */
 		namespace_table.new_usertype<Rml::ElementFormControlTextArea>("ElementFormControlTextArea", sol::no_constructor,
 			// G+S
 			"cols", sol::property(&Rml::ElementFormControlTextArea::GetNumColumns, &Rml::ElementFormControlTextArea::SetNumColumns),

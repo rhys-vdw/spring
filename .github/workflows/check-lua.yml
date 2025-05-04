@@ -4,11 +4,13 @@ on:
   pull_request:
     paths:
       - 'rts/Lua/**'
+      - 'rts/Rml/SolLua/*.cpp'
   push:
     branches:
       - master
     paths:
       - 'rts/Lua/**'
+      - 'rts/Rml/SolLua/*.cpp'
 jobs:
   cehck-library:
     name: Check library
@@ -23,6 +25,10 @@ jobs:
         run: |
           npm install -g lua-doc-extractor@3.1
           lua-doc-extractor rts/Lua/*.cpp \
+            --dest rts/Lua/library/generated \
+            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }} \
+            --error
+          lua-doc-extractor rts/Rml/SolLua/*.cpp \
             --dest rts/Lua/library/generated \
             --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }} \
             --error

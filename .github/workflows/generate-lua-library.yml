@@ -6,6 +6,7 @@ on:
       - master
     paths:
       - 'rts/Lua/**'
+      - 'rts/Rml/SolLua/*.cpp'
 jobs:
   generate-library:
     if: github.repository == 'beyond-all-reason/spring' || github.event_name == 'workflow_dispatch'
@@ -29,6 +30,9 @@ jobs:
         run: |
           npm install -g lua-doc-extractor@3
           lua-doc-extractor rts/Lua/*.cpp \
+            --dest rts/Lua/library/generated \
+            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+          lua-doc-extractor rts/Rml/SolLua/*.cpp \
             --dest rts/Lua/library/generated \
             --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
 

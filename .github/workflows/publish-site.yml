@@ -31,6 +31,10 @@ jobs:
           lua-doc-extractor rts/Lua/*.cpp \
             --dest rts/Lua/library/generated \
             --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }}
+          lua-doc-extractor rts/Rml/SolLua/*.cpp \
+            --dest rts/Lua/library/generated \
+            --repo https://github.com/${{ github.repository }}/blob/${{ github.sha }} \
+            --error
       # Upload the Lua library artifact for debugging.
       - name: Upload Lua Library artifact
         uses: actions/upload-artifact@v4
