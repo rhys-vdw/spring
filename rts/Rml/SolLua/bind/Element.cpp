@@ -197,7 +197,7 @@ namespace Rml::SolLua
 	{
 		/***
 		 * Event listener interface
-		 * @class RmlEventListener
+		 * @class RmlUi.EventListener
 		 * @field ProcessEvent fun(event: RmlEvent)
 		 * @field OnAttach fun(element: RmlUi.Element) 
 		 * @field OnDetach fun(element: RmlUi.Element)
@@ -211,7 +211,7 @@ namespace Rml::SolLua
 
 		///////////////////////////
 		/***
-		 * @alias RmlUi.ElementStyleProxy { [string]: string }
+		 * @alias RmlUi.StyleProxy { [string]: string }
 		 */
 		namespace_table.new_usertype<style::StyleProxy>("StyleProxy", sol::no_constructor,
 														sol::meta_function::index, &style::StyleProxy::Set,

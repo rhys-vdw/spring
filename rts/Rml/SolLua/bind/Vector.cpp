@@ -43,12 +43,18 @@ namespace Rml::SolLua
 		 * @field magnitude number
 		 * @field x integer
 		 * @field y integer
-		 * @field new fun():RmlUi.Vector2i
 		 * @operator add:RmlUi.Vector2i
 		 * @operator div:RmlUi.Vector2i
 		 * @operator mul:RmlUi.Vector2i
 		 * @operator sub:RmlUi.Vector2i
 		 * @operator unm:RmlUi.Vector2i
+		 */
+
+		 /***
+		 * @functions RmlUi.Vector2i.new
+		 * @param x integer
+		 * @param y integer
+		 * @return RmlUi.Vector2i
 		 */
 		namespace_table.new_usertype<Rml::Vector2i>("Vector2i", sol::constructors<Rml::Vector2i(), Rml::Vector2i(int, int)>(),
 			// O
@@ -79,12 +85,18 @@ namespace Rml::SolLua
 		 * @field magnitude number
 		 * @field x number
 		 * @field y number
-		 * @field new fun():RmlUi.Vector2f
 		 * @operator add:RmlUi.Vector2f
 		 * @operator div:RmlUi.Vector2f
 		 * @operator mul:RmlUi.Vector2f
 		 * @operator sub:RmlUi.Vector2f
 		 * @operator unm:RmlUi.Vector2i
+		 */
+		
+		/***
+		 * @functions RmlUi.Vector2f.new
+		 * @param x number
+		 * @param y number
+		 * @return RmlUi.Vector2f
 		 */
 		namespace_table.new_usertype<Rml::Vector2f>("Vector2f", sol::constructors<Rml::Vector2f(), Rml::Vector2f(float, float)>(),
 			// O

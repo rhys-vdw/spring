@@ -165,11 +165,11 @@ namespace Rml::SolLua
 		 * Pushes the document behind other documents within its context with a similar z-index.
 		 * @function RmlUi.Document:PushToBack
 		 */
-		
+
 		/***
-		 * Shows the document. flags is either NONE, FOCUS or MODAL. flags defaults to FOCUS.
+		 * Shows the document.
 		 * @function RmlUi.Document:Show
-		 * @param modal RmlModalFlag?
+		 * @param modal RmlModalFlag? Defaults to Focus
 		 * @param focus RmlFocusFlag?
 		 */
 		namespace_table.new_usertype<SolLuaDocument>("Document", sol::no_constructor,
