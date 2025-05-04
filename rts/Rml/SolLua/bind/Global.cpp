@@ -204,7 +204,7 @@
 			  * @param event_type string
 			  * @param interruptible boolean?
 			  * @param bubbles boolean?
-			  * @param default_phase RmlDefaultActionPhase?
+			  * @param default_phase RmlUi.default_action_phase?
 			  * @param RmlEventID
 			  */
 			 "RegisterEventType", sol::overload(&functions::registerEventType4, &functions::registerEventType3),
@@ -260,7 +260,7 @@
 			 "version", sol::readonly_property(&Rml::GetVersion)
 		 );
 		 /***
-		  * @alias RMLKeyIdentifier
+		  * @alias RmlUi.key_identifier
 		  * | "UNKNOWN"
 		  * | "SPACE"
 		  * | "0"
@@ -622,7 +622,7 @@
 			 return t;
 		 }));
 		 /***
-		  * @alias RmlKeyModifier "CTRL" | "SHIFT" | "ALT" | "META" | "CAPSLOCK" | "NUMLOCK" | "SCROLLOCK"
+		  * @alias RmlUi.key_modifier "CTRL" | "SHIFT" | "ALT" | "META" | "CAPSLOCK" | "NUMLOCK" | "SCROLLOCK"
 		  */
 		 namespace_table.set("key_modifier", sol::readonly_property([](sol::this_state l) {
 			 sol::state_view lua(l);
@@ -637,7 +637,7 @@
 			 );
 		 }));
 		 /***
-		  * @alias RmlFontWeight "Auto" | "Normal" | "Bold"
+		  * @alias RmlUi.font_weight "Auto" | "Normal" | "Bold"
 		  */
 		 namespace_table.set("font_weight", sol::readonly_property([](sol::this_state l) {
 			 sol::state_view lua(l);
@@ -648,7 +648,7 @@
 			 );
 		 }));
 		 /***
-		  * @alias RmlDefaultActionPhase "None" | "Target" | "TargetAndBubble"
+		  * @alias RmlUi.default_action_phase "None" | "Target" | "TargetAndBubble"
 		  */
 		 namespace_table.set("default_action_phase", sol::readonly_property([](sol::this_state l) {
 			 sol::state_view lua(l);

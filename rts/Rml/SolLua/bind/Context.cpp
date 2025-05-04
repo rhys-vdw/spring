@@ -286,7 +286,8 @@ void bind_context(sol::table& namespace_table, SolLuaPlugin* slp)
 	 * @field focus_element RmlUi.Element
 	 * @field hover_element RmlUi.Element
 	 * @field name string
-	 * @field root_element RmlElement
+	 * @field root_element RmlUi.Element
+	 * @field dp_ratio float
 	 */
 
 	/***
@@ -341,9 +342,125 @@ void bind_context(sol::table& namespace_table, SolLuaPlugin* slp)
 	 * @function RmlUi.Context:OpenDataModel
 	 * @generic T
 	 * @param name string
-	 * @param model 'T'
+	 * @param model T
 	 * @param widget table
 	 * @return RmlUi.SolLuaDataModel<T>
+	 */
+
+	/***
+	 * @function RmlUi.Context:UnloadAllDocuments
+	 */
+
+	/***
+	 * Removes a data model from the context.
+	 * @function RmlUi.Context:RemoveDataModel
+	 * @param name string
+	 */
+
+	/***
+	 * Processes a mouse move event.
+	 * @function RmlUi.Context:ProcessMouseMove
+	 * @param position Vector2f
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a mouse button down event.
+	 * @function RmlUi.Context:ProcessMouseButtonDown
+	 * @param button RmlMouseButton
+	 * @param key_modifier_state integer
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a mouse button up event.
+	 * @function RmlUi.Context:ProcessMouseButtonUp
+	 * @param button RmlMouseButton
+	 * @param key_modifier_state integer
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a mouse wheel event.
+	 * @function RmlUi.Context:ProcessMouseWheel
+	 * @param delta Vector2f | float
+	 * @param key_modifier_state integer
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a mouse leave event.
+	 * @function RmlUi.Context:ProcessMouseLeave
+	 * @return boolean
+	 */
+
+	/***
+	 * Returns true if the mouse is currently interacting with the context, false if not.
+	 * @function RmlUi.Context:IsMouseInteracting
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a key down event.
+	 * @function RmlUi.Context:ProcessKeyDown
+	 * @param key RmlUi.key)identifier
+	 * @param key_modifier_state integer
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a key up event.
+	 * @function RmlUi.Context:ProcessKeyUp
+	 * @param key RmlUi.key_identifier
+	 * @param key_modifier_state integer
+	 * @return boolean
+	 */
+
+	/***
+	 * Processes a text input event.
+	 * @function RmlUi.Context:ProcessTextInput
+	 * @param text string
+	 * @return boolean
+	 */
+
+	/***
+	 * Enables or disables the mouse cursor for the context.
+	 * @function RmlUi.Context:EnableMouseCursor
+	 * @param enable boolean
+	 */
+
+	/***
+	 * Activates a theme for the context.
+	 * @function RmlUi.Context:ActivateTheme
+	 * @param theme_name string
+	 * @param activate boolean
+	 */
+
+	/***
+	 * Returns true if the theme is active, false if not.
+	 * @function RmlUi.Context:IsThemeActive
+	 * @param theme_name string
+	 * @return boolean
+	 */
+
+	/***
+	 * Returns the element at the point specified by point.
+	 * @function RmlUi.Context:GetElementAtPoint
+	 * @param point Vector2f
+	 * @param ignore RmlUi.Element?
+	 * @return RmlUi.Element
+	 */
+
+	/***
+	 * Pulls the document to the front of the context.
+	 * @function RmlUi.Context:PullDocumentToFront
+	 * @param document RmlUi.Document
+	 */
+
+	/***
+	 * Pushes the document to the back of the context.
+	 * @function RmlUi.Context:PushDocumentToBack
+	 * @param document RmlUi.Document
 	 */
 
 	namespace_table.new_usertype<Rml::Context>(
