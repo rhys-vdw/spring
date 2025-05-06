@@ -220,7 +220,7 @@ namespace Rml::SolLua
 		);
 
 		/***  
-		 * Represents an element in the RmlUi document tree. This class cannot be constructed directly; use a Document object to instantiate elements.
+		 * Represents an element in the RmlUi document tree. This class cannot be constructed directly; use a Document object to instantiate elements. This is the foundational piece of the DOM.
 		 * @class RmlUi.Element
 		 * @field attributes RmlUi.ElementAttributesProxy Read-only. Proxy for accessing element attributes.
 		 * @field child_nodes RmlUi.ElementChildNodesProxy Read-only. Proxy for accessing child nodes of the element.
