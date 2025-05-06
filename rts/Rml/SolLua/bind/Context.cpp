@@ -303,14 +303,14 @@ void bind_context(sol::table& namespace_table, SolLuaPlugin* slp)
 	 * Creates a new document with the tag name of tag.
 	 * @function RmlUi.Context:CreateDocument
 	 * @param tag string
-	 * @return RmlDocument
+	 * @return RmlUi.Document
 	 */
 
 	/***
 	 * Attempts to load a document from the RML file found at document_path. If successful, the document will be returned with a reference count of one.
 	 * @function RmlUi.Context:LoadDocument
 	 * @param document_path string
-	 * @return RmlDocument
+	 * @return RmlUi.Document
 	 */
 
 	/***
@@ -327,7 +327,7 @@ void bind_context(sol::table& namespace_table, SolLuaPlugin* slp)
 	/***
 	 * Unloads a specific document within the context.
 	 * @function RmlUi.Context:UnloadDocument
-	 * @param document RmlDocument
+	 * @param document RmlUi.Document
 	 */
 
 	/***
