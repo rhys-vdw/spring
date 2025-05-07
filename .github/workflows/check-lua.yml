@@ -19,7 +19,9 @@ jobs:
       - name: Checkout Lua CPP files
         uses: actions/checkout@v4
         with:
-          sparse-checkout: rts/Lua
+          sparse-checkout: |
+            rts/Lua
+            rts/Rml/SolLua
 
       - name: Generate Lua library
         run: |
